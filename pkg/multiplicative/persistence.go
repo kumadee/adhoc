@@ -21,7 +21,7 @@ type Persistence func(number uint64) (uint64, error)
 // it into string digits and keeps on multiplying them
 // until the result is of 1 digit.
 func NaivePersistence(number uint64) (uint64, error) {
-	if 0 <= number && number < 10 {
+	if number < 10 {
 		return 0, nil
 	}
 	var result uint64 = 1

@@ -74,6 +74,9 @@ func TestMinMaxHighestPersistNumbers(t *testing.T) {
 
 func BenchmarkNaiveMultiPersitence(b *testing.B) {
 	for i := uint64(0); i <= uint64(b.N); i++ {
-		NaivePersistence(i)
+		_, err := NaivePersistence(i)
+		if err != nil {
+			b.Error(err.Error())
+		}
 	}
 }
