@@ -1,4 +1,4 @@
-package multipersist
+package multiplicative
 
 import (
 	"errors"
@@ -17,10 +17,10 @@ var (
 // Persistence type of the Persistence function
 type Persistence func(number uint64) (uint64, error)
 
-// NaiveMultiPersitence takes an integer and converts
+// NaivePersistence takes an integer and converts
 // it into string digits and keeps on multiplying them
 // until the result is of 1 digit.
-func NaiveMultiPersitence(number uint64) (uint64, error) {
+func NaivePersistence(number uint64) (uint64, error) {
 	if 0 <= number && number < 10 {
 		return 0, nil
 	}
@@ -32,7 +32,7 @@ func NaiveMultiPersitence(number uint64) (uint64, error) {
 		}
 		result *= value
 	}
-	per, err := NaiveMultiPersitence(result)
+	per, err := NaivePersistence(result)
 	return 1 + per, err
 }
 

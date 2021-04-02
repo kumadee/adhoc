@@ -1,7 +1,7 @@
 package main
 
-import "github.com/kumadee/adhoc/pkg/multipersist"
+import "github.com/kumadee/adhoc/pkg/multiplicative"
 
 func main() {
-	multipersist.MinMaxHighestPersistNumbers(0, multipersist.MaxUint64, multipersist.NaiveMultiPersitence)
+	multiplicative.MinMaxHighestPersistNumbers(0, multiplicative.MaxUint64, multiplicative.NaivePersistence)
 }

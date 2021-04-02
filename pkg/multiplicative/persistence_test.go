@@ -1,4 +1,4 @@
-package multipersist
+package multiplicative
 
 import (
 	"fmt"
@@ -32,10 +32,14 @@ func TestNaiveMultiPersitence(t *testing.T) {
 			input:    77,
 			expected: Expected{4, nil},
 		},
+		{
+			input:    277777788888899,
+			expected: Expected{11, nil},
+		},
 	}
 	for _, tc := range cases {
 		description := fmt.Sprintf("F(%d)", tc.input)
-		v, err := NaiveMultiPersitence(tc.input)
+		v, err := NaivePersistence(tc.input)
 		assert.Equal(t, tc.expected.value, v, description)
 		assert.ErrorIs(t, tc.expected.err, err, description)
 	}
@@ -56,7 +60,7 @@ func TestMinMaxHighestPersistNumbers(t *testing.T) {
 		{
 			start:    0,
 			end:      100,
-			function: NaiveMultiPersitence,
+			function: NaivePersistence,
 			expected: Expected{77, 77, 4},
 		},
 	}
@@ -70,6 +74,6 @@ func TestMinMaxHighestPersistNumbers(t *testing.T) {
 
 func BenchmarkNaiveMultiPersitence(b *testing.B) {
 	for i := uint64(0); i <= uint64(b.N); i++ {
-		NaiveMultiPersitence(i)
+		NaivePersistence(i)
 	}
 }
