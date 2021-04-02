@@ -14,7 +14,8 @@ var (
 	ErrorNotInRange0To9 = errors.New("rune is not in the range of 0 to 9")
 )
 
-type persistence func(number uint64) (uint64, error)
+// Persistence type of the Persistence function
+type Persistence func(number uint64) (uint64, error)
 
 // NaiveMultiPersitence takes an integer and converts
 // it into string digits and keeps on multiplying them
@@ -64,7 +65,7 @@ func aToi(n rune) (uint64, error) {
 
 // MinMaxHighestPersistNumbers finds the min & max number
 // with the highest persistence for uint64
-func MinMaxHighestPersistNumbers(start uint64, end uint64, f persistence) (uint64, uint64, uint64) {
+func MinMaxHighestPersistNumbers(start uint64, end uint64, f Persistence) (uint64, uint64, uint64) {
 	min, max, per := uint64(0), uint64(0), uint64(0)
 	for i := start; i <= end; i++ {
 		v, err := f(i)

@@ -43,26 +43,28 @@ func TestNaiveMultiPersitence(t *testing.T) {
 
 func TestMinMaxHighestPersistNumbers(t *testing.T) {
 	type Expected struct {
-		min         uint64
-		max         uint64
-		persistence uint64
+		min uint64
+		max uint64
+		per uint64
 	}
 	var cases = []struct {
 		start    uint64
 		end      uint64
+		function Persistence
 		expected Expected
 	}{
 		{
 			start:    0,
 			end:      100,
+			function: NaiveMultiPersitence,
 			expected: Expected{77, 77, 4},
 		},
 	}
 	for _, tc := range cases {
-		min, max, per := MinMaxHighestPersistNumbers(tc.start, tc.end, NaiveMultiPersitence)
+		min, max, per := MinMaxHighestPersistNumbers(tc.start, tc.end, tc.function)
 		assert.Equal(t, tc.expected.min, min, fmt.Sprintf("min F(%d, %d) = %d", tc.start, tc.end, min))
 		assert.Equal(t, tc.expected.max, max, fmt.Sprintf("max F(%d, %d) = %d", tc.start, tc.end, max))
-		assert.Equal(t, tc.expected.persistence, per, fmt.Sprintf("per F(%d, %d) = %d", tc.start, tc.end, per))
+		assert.Equal(t, tc.expected.per, per, fmt.Sprintf("per F(%d, %d) = %d", tc.start, tc.end, per))
 	}
 }
 
